@@ -2,7 +2,6 @@ import React from "react";
 import { Link, usePage } from "@inertiajs/react";
 
 export default function Navbar() {
-    // Ambil info user login dari props
     const { auth } = usePage().props;
 
     return (
@@ -12,6 +11,7 @@ export default function Navbar() {
                 <div className="font-bold text-lg text-blue-700">
                     Konseling Siswa
                 </div>
+
                 {/* Menu kanan */}
                 <div className="space-x-6 flex items-center">
                     <a
@@ -33,7 +33,17 @@ export default function Navbar() {
                         Contact
                     </a>
 
-                    {/* Jika BELUM login, tampilkan Login & Register */}
+                    {/* ✅ Tampilkan Data Siswa hanya jika login */}
+                    {auth?.user && (
+                        <Link
+                            href="/students"
+                            className="text-blue-600 hover:underline"
+                        >
+                            Data Siswa
+                        </Link>
+                    )}
+
+                    {/* ✅ Jika BELUM login */}
                     {!auth?.user && (
                         <>
                             <Link
@@ -51,7 +61,7 @@ export default function Navbar() {
                         </>
                     )}
 
-                    {/* Jika SUDAH login, tampilkan nama user dan Logout */}
+                    {/* ✅ Jika SUDAH login */}
                     {auth?.user && (
                         <>
                             <span className="text-gray-600 text-sm mr-2">
