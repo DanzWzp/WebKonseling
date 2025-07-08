@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Navbar from "../Components/Navbar";
+import Footer from "@/Components/Footer";
 import { useForm } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 import { useState } from "react";
@@ -93,7 +94,6 @@ export default function Bimbingan({ students = [], bimbinganList = [] }) {
     return (
         <div className="min-h-screen bg-gray-100">
             <Navbar />
-
             <div className="max-w-5xl mx-auto px-4 py-10">
                 <div className="text-center mt-10 mb-8">
                     <h1 className="text-3xl font-extrabold text-blue-700 tracking-tight">
@@ -664,6 +664,7 @@ export default function Bimbingan({ students = [], bimbinganList = [] }) {
                     </div>
                 </div>
             )}
+            <Footer />
         </div>
     );
 }

@@ -74,11 +74,26 @@ export default function Navbar() {
                                     >
                                         Data Siswa
                                     </Link>
+
                                     <Link
                                         href="/bimbingan"
-                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline"
+                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline border-b border-gray-200"
                                     >
                                         Data Bimbingan
+                                    </Link>
+
+                                    <Link
+                                        href="/home-visit"
+                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline"
+                                    >
+                                        Home Visit
+                                    </Link>
+
+                                    <Link
+                                        href="/kenakalan"
+                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline"
+                                    >
+                                        Kenakalan Remaja
                                     </Link>
                                 </div>
                             )}

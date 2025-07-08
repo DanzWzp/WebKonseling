@@ -8,87 +8,118 @@ export default function Home() {
             <Navbar />
 
             {/* Hero */}
-            <section className="bg-blue-100 py-16">
-                <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-8">
-                    <div className="text-center md:text-left md:flex-1">
-                        <h1 className="text-4xl font-bold text-blue-800 mb-2">
+            <section className="bg-gray-50 py-24">
+                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+                    {/* Left Text */}
+                    <div className="md:w-1/2 text-center md:text-left">
+                        <p className="text-sm uppercase tracking-widest text-gray-500">
+                            Selamat Datang!
+                        </p>
+                        <h1 className="text-5xl font-bold text-gray-800 mb-2">
                             Sultan Tarmidzi Korompot
                         </h1>
-                        <p className="text-lg text-gray-700 mb-4">
-                            Guru Bimbingan Konseling SMA Negeri 3 Gorontalo
-                            Utara
-                        </p>
-                        <p className="text-gray-600">
-                            "Mendampingi siswa menemukan solusi terbaik dalam
-                            masalah akademik, pribadi, sosial dan karir mereka."
+                        <p className="text-xl text-gray-600 mb-6">
+                            Counseling Guidance
                         </p>
                     </div>
-                    <div className="md:flex-1 flex justify-center">
+                    {/* Right Image */}
+                    <div className="md:w-1/2 flex justify-center">
                         <img
                             src="/img/foto.jpg"
                             alt="Foto Profil"
-                            className="rounded-full shadow-lg w-52 h-68 object-cover"
+                            className="w-64 h-auto rounded-lg shadow-xl object-cover"
                         />
                     </div>
                 </div>
             </section>
 
             {/* About */}
-            <section id="about" className="py-16 bg-white">
+            <section id="about" className="py-20 bg-white">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-center text-blue-800 mb-6">
+                    <h2 className="text-4xl font-bold text-center text-blue-800 mb-6">
                         Tentang Website
                     </h2>
                     <p className="text-gray-700 text-center max-w-3xl mx-auto mb-12">
                         Website Konseling Siswa ini bertujuan untuk
                         mendigitalisasi proses pendampingan siswa melalui
                         dokumentasi dan manajemen data yang terstruktur.
-                        Fitur-fitur seperti data siswa, laporan bimbingan, home
-                        visit, dan pemantauan kasus kenakalan remaja dirancang
-                        untuk mendukung peran guru BK dalam menciptakan
-                        lingkungan sekolah yang kondusif dan berkarakter.
                     </p>
-
-                    {/* 3 Card Tujuan */}
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition">
-                            <h3 className="text-xl font-bold text-blue-700 mb-2">
-                                Pendataan Siswa
-                            </h3>
-                            <p className="text-gray-700 text-sm">
-                                Mengelola biodata lengkap siswa secara aman dan
-                                terpusat.
-                            </p>
-                        </div>
-                        <div className="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition">
-                            <h3 className="text-xl font-bold text-blue-700 mb-2">
-                                Layanan Bimbingan
-                            </h3>
-                            <p className="text-gray-700 text-sm">
-                                Mendokumentasikan bimbingan akademik, pribadi,
-                                dan sosial.
-                            </p>
-                        </div>
-                        <div className="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition">
-                            <h3 className="text-xl font-bold text-blue-700 mb-2">
-                                Pemantauan Masalah
-                            </h3>
-                            <p className="text-gray-700 text-sm">
-                                Mencatat kasus kenakalan dan intervensi untuk
-                                penanganan lebih baik.
-                            </p>
-                        </div>
+                        {/* Card */}
+                        {[
+                            {
+                                title: "Pendataan Siswa",
+                                desc: "Mengelola biodata lengkap siswa secara aman dan terpusat.",
+                            },
+                            {
+                                title: "Layanan Bimbingan",
+                                desc: "Mendokumentasikan bimbingan akademik, pribadi, dan sosial.",
+                            },
+                            {
+                                title: "Pemantauan Masalah",
+                                desc: "Mencatat kasus kenakalan dan intervensi untuk penanganan lebih baik.",
+                            },
+                        ].map((item, idx) => (
+                            <div
+                                key={idx}
+                                className="bg-blue-50 p-6 rounded-lg shadow hover:shadow-md transition"
+                            >
+                                <h3 className="text-xl font-bold text-blue-700 mb-2">
+                                    {item.title}
+                                </h3>
+                                <p className="text-gray-700 text-sm">
+                                    {item.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Awards */}
+            <section id="awards" className="py-20 bg-gray-100">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-4xl font-bold text-center text-blue-800 mb-10">
+                        Penghargaan & Prestasi
+                    </h2>
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "Penghargaan Guru BK Teladan",
+                                desc: "Diberikan oleh Dinas Pendidikan atas dedikasi dan pendekatan inovatif dalam membimbing siswa.",
+                            },
+                            {
+                                title: "Pemateri Nasional BK 2023",
+                                desc: "Menjadi pembicara dalam seminar nasional mengenai konseling digital dan remaja.",
+                            },
+                            {
+                                title: "Inisiator Sistem BK Digital",
+                                desc: "Merancang dan mengimplementasikan sistem konseling berbasis website pertama di sekolah.",
+                            },
+                        ].map((item, idx) => (
+                            <div
+                                key={idx}
+                                className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition"
+                            >
+                                <h4 className="text-lg font-semibold text-blue-700 mb-2">
+                                    🏆 {item.title}
+                                </h4>
+                                <p className="text-sm text-gray-700">
+                                    {item.desc}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
             {/* Contact */}
-            <section id="contact" className="py-16 bg-gray-100">
+            <section id="contact" className="py-20 bg-white">
                 <div className="container mx-auto px-4 max-w-xl">
-                    <h2 className="text-3xl font-bold text-center text-blue-800 mb-6">
+                    <h2 className="text-4xl font-bold text-center text-blue-800 mb-6">
                         Kontak
                     </h2>
-                    <div className="bg-white shadow rounded-lg p-6 space-y-4 text-sm text-gray-700">
+                    <div className="bg-gray-50 shadow rounded-lg p-6 space-y-4 text-sm text-gray-700">
                         <p>
                             <strong>Guru BK:</strong> Sultan Tarmidzi Korompot
                         </p>

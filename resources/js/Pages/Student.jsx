@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useForm } from "@inertiajs/react";
 import Navbar from "../Components/Navbar";
+import Footer from "@/Components/Footer";
 
 export default function Student({ students = [] }) {
     // Form tambah siswa
@@ -657,6 +658,7 @@ export default function Student({ students = [] }) {
                     </div>
                 </div>
             )}
+            <Footer />
         </div>
     );
 }
