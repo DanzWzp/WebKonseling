@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, usePage } from "@inertiajs/react";
 
 export default function Navbar() {
     const { auth } = usePage().props;
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef();
+
+    // Klik di luar dropdown → tutup
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <nav className="bg-white shadow-md sticky top-0 z-10">
@@ -13,7 +30,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Menu kanan */}
-                <div className="space-x-6 flex items-center">
+                <div className="space-x-6 flex items-center relative">
                     <a
                         href="/"
                         className="text-gray-700 hover:text-blue-700 font-medium"
@@ -32,15 +49,40 @@ export default function Navbar() {
                     >
                         Contact
                     </a>
+                    <Link
+                        href="/dashboard"
+                        className="text-gray-700 hover:text-blue-700 font-medium"
+                    >
+                        information
+                    </Link>
 
-                    {/* ✅ Tampilkan Data Siswa hanya jika login */}
+                    {/* ✅ Dropdown klik hanya jika login */}
                     {auth?.user && (
-                        <Link
-                            href="/students"
-                            className="text-blue-600 hover:underline"
-                        >
-                            Data Siswa
-                        </Link>
+                        <div className="relative" ref={dropdownRef}>
+                            <button
+                                onClick={() => setDropdownOpen(!dropdownOpen)}
+                                className="text-green-700 font-semibold focus:outline-none"
+                            >
+                                Counseling Guidance ▾
+                            </button>
+
+                            {dropdownOpen && (
+                                <div className="absolute bg-white border border-black shadow-md mt-2 right-0 min-w-[180px] z-50 rounded-md">
+                                    <Link
+                                        href="/students"
+                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline border-b border-gray-200"
+                                    >
+                                        Data Siswa
+                                    </Link>
+                                    <Link
+                                        href="/bimbingan"
+                                        className="block px-4 py-2 text-green-700 font-semibold hover:bg-green-100 no-underline"
+                                    >
+                                        Data Bimbingan
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
                     )}
 
                     {/* ✅ Jika BELUM login */}
@@ -48,13 +90,13 @@ export default function Navbar() {
                         <>
                             <Link
                                 href="/login"
-                                className="text-blue-700 hover:underline font-medium"
+                                className="text-blue-700 hover:text-yellow-700 font-bold"
                             >
                                 Login
                             </Link>
                             <Link
                                 href="/register"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 font-medium"
+                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 font-medium no-underline"
                             >
                                 Register
                             </Link>

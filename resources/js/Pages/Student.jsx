@@ -368,7 +368,7 @@ export default function Student({ students = [] }) {
                                         <td className="p-2 border">
                                             {student.phone}
                                         </td>
-                                        <td className="p-2 border">
+                                        <td className="p-2 border flex gap-1 justify-center">
                                             <button
                                                 className="bg-yellow-400 text-white px-2 py-1 rounded mr-2"
                                                 onClick={() =>
