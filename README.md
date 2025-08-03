@@ -133,8 +133,7 @@ http://127.0.0.1:8000
 
 | Role  | Email             | Password |
 | ----- | ----------------- | -------- |
-| Admin | admin@example.com | password |
-| Guru  | guru@example.com  | password |
+| Admin | admin@gmail.com | admin123 |
 
 _Kamu bisa sesuaikan ini lewat database atau fitur register._
 
@@ -195,4 +194,4 @@ Pull request dan issue terbuka!
 
 ## 📄 Lisensi
 
-MIT License © 2025 - [Nama Anda]
+MIT License © 2025 - DanzWzp
