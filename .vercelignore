@@ -1,0 +1,12 @@
+app/
+bootstrap/
+config/
+database/
+lang/
+routes/
+storage/
+vendor/
+artisan
+composer.json
+composer.lock
+public/index.php

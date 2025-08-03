@@ -1,0 +1,6 @@
+{
+    "buildCommand": "npm run build",
+    "outputDirectory": "public/build",
+    "framework": null,
+    "ignoreCommand": "echo 'Laravel Only Deploy Backend on Railway'"
+}
