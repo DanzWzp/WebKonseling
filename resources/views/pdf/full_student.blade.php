@@ -56,6 +56,12 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+        .photo {
+            border: 1px solid #ccc;
+            width: 110px;
+            height: 140px;
+            object-fit: cover;
+        }
         table.data {
             width: 100%;
             border-collapse: collapse;
@@ -63,6 +69,11 @@
         }
         table.data td, table.data th {
             border: 1px solid #666;
+            padding: 6px 4px;
+            vertical-align: top;
+            text-align: left;
+        }
+        table.data-siswa td, table.data th {
             padding: 6px 4px;
             vertical-align: top;
             text-align: left;
@@ -118,16 +129,29 @@
 
     {{-- Data Siswa --}}
     <div class="title">Data Siswa</div>
-    <table width="100%">
-        <tr><td><strong>Nama</strong></td><td>: {{ $student->name }}</td></tr>
-        <tr><td><strong>TTL</strong></td><td>: {{ $student->birth_place }}, {{ \Carbon\Carbon::parse($student->birth_date)->translatedFormat('d F Y') }}</td></tr>
-        <tr><td><strong>Jenis Kelamin</strong></td><td>: {{ $student->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td></tr>
-        <tr><td><strong>Alamat</strong></td><td>: {{ $student->address }}</td></tr>
-        <tr><td><strong>Asal Sekolah</strong></td><td>: {{ $student->school_origin }}</td></tr>
-        <tr><td><strong>Nomor HP</strong></td><td>: {{ $student->phone }}</td></tr>
-        <tr><td><strong>Nama Orang Tua</strong></td><td>: {{ $student->parent_name }}</td></tr>
-        <tr><td><strong>Tinggal Dengan</strong></td><td>: {{ $student->living_with }}</td></tr>
-        <tr><td><strong>Prestasi</strong></td><td>: {{ $student->achievement ?: '-' }}</td></tr>
+    <table class="data-siswa">
+        <tr>
+            <td width="70%">
+                <table>
+                    <tr><td><strong>Nama</strong></td><td>: {{ $student->name }}</td></tr>
+                    <tr><td><strong>Tempat, Tanggal Lahir</strong></td><td>: {{ $student->birth_place }}, {{ \Carbon\Carbon::parse($student->birth_date)->translatedFormat('d F Y') }}</td></tr>
+                    <tr><td><strong>Jenis Kelamin</strong></td><td>: {{ $student->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td></tr>
+                    <tr><td><strong>Alamat</strong></td><td>: {{ $student->address }}</td></tr>
+                    <tr><td><strong>Asal Sekolah</strong></td><td>: {{ $student->school_origin }}</td></tr>
+                    <tr><td><strong>No HP</strong></td><td>: {{ $student->phone }}</td></tr>
+                    <tr><td><strong>Nama Orang Tua</strong></td><td>: {{ $student->parent_name }}</td></tr>
+                    <tr><td><strong>Tinggal dengan</strong></td><td>: {{ $student->living_with }}</td></tr>
+                    <tr><td><strong>Prestasi</strong></td><td>: {{ $student->achievement }}</td></tr>
+                </table>
+            </td>
+            <td width="40%" align="center">
+                @if ($student->photo)
+                    <img src="{{ public_path('storage/' . $student->photo) }}" class="photo" alt="Foto Siswa">
+                @else
+                    <div class="photo" style="text-align:center; line-height:140px;">Tidak Ada Foto</div>
+                @endif
+            </td>
+        </tr>
     </table>
 
     {{-- Bimbingan --}}
@@ -152,20 +176,7 @@
     </table>
     @endif
 
-    {{-- Dokumentasi Bimbingan --}}
-    @foreach ($bimbingan as $item)
-        @if ($item->foto_bimbingan && count($item->foto_bimbingan))
-            <div style="page-break-before: always;"></div>
-            <div class="title">Dokumentasi Bimbingan - {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</div>
-            @foreach ($item->foto_bimbingan as $foto)
-            <div class="card-container">
-                <img src="{{ public_path('storage/' . $foto) }}" class="card-photo">
-            </div>
-            @endforeach
-        @endif
-    @endforeach
-
-    {{-- Home Visit --}}
+     {{-- Home Visit --}}
     @if($homevisit->count())
     <div class="title" style="page-break-before: always;">Data Home Visit</div>
     <table class="data">
@@ -182,19 +193,6 @@
         </tbody>
     </table>
     @endif
-
-    {{-- Dokumentasi Home Visit --}}
-    @foreach($homevisit as $v)
-        @if($v->foto && count($v->foto))
-            <div style="page-break-before: always;"></div>
-            <div class="title">Dokumentasi Home Visit</div>
-            @foreach ($v->foto as $foto)
-            <div class="card-container">
-                <img src="{{ public_path('storage/' . $foto) }}" class="card-photo">
-            </div>
-            @endforeach
-        @endif
-    @endforeach
 
     {{-- Kenakalan --}}
     @if($kenakalan->count())
@@ -215,6 +213,34 @@
     </table>
     @endif
 
+    {{-- Dokumentasi Bimbingan --}}
+    @foreach ($bimbingan as $item)
+        @if ($item->foto_bimbingan && count($item->foto_bimbingan))
+            <div style="page-break-before: always;"></div>
+            <div class="title">Dokumentasi Bimbingan - {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</div>
+            @foreach ($item->foto_bimbingan as $foto)
+            <div class="card-container">
+                <img src="{{ public_path('storage/' . $foto) }}" class="card-photo">
+            </div>
+            @endforeach
+        @endif
+    @endforeach
+
+
+    {{-- Dokumentasi Home Visit --}}
+    @foreach($homevisit as $v)
+        @if($v->foto && count($v->foto))
+            <div style="page-break-before: always;"></div>
+            <div class="title">Dokumentasi Home Visit</div>
+            @foreach ($v->foto as $foto)
+            <div class="card-container">
+                <img src="{{ public_path('storage/' . $foto) }}" class="card-photo">
+            </div>
+            @endforeach
+        @endif
+    @endforeach
+
+
     {{-- Dokumentasi Kenakalan --}}
     @foreach($kenakalan as $k)
         @if($k->foto && count($k->foto))
@@ -228,22 +254,17 @@
         @endif
     @endforeach
 
-    {{-- Tanda Tangan Akhir --}}
-    <div class="ttd">
-        <table width="100%">
-            <tr>
-                <td width="60%"></td>
-                <td>
-                    Gorontalo Utara, {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}<br>
-                    <strong>Konselor</strong><br><br>
-                    <img src="{{ public_path('img/tanda-tangan.png') }}" class="ttd-img" alt="Tanda Tangan">
-                    <br>
-                    <strong>Sultan M. Tarmizi, S.Pd</strong><br>
-                    NIP. 1994022420232110009
-                </td>
-            </tr>
-        </table>
+   {{-- Tanda Tangan Akhir --}}
+    <div style="page-break-before: always; height: 1000px; position: relative;">
+        <div style="position: absolute; bottom: 40px; right: 40px; text-align: center;">
+            <p style="margin-bottom: 4px;">Gorontalo Utara, {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</p>
+            <p style="font-weight: bold; margin-bottom: 30px;">Konselor</p>
+            <img src="{{ public_path('img/tanda-tangan.png') }}" alt="Tanda Tangan" style="width: 100px; margin-bottom: 10px;">
+            <p style="font-weight: bold; margin: 0;">Sultan M. Tarmizi, S.Pd</p>
+            <p style="margin: 0;">NIP. 1994022420232110009</p>
+        </div>
     </div>
+
 
 </body>
 </html>

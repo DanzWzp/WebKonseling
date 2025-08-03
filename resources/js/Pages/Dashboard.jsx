@@ -176,21 +176,17 @@ export default function Dashboard({ students = [], stats = {} }) {
                                         {student.school_origin}
                                     </td>
                                     <td className="px-4 py-2 border text-center">
-                                        <select
-                                            defaultValue=""
-                                            onChange={(e) =>
+                                        <button
+                                            onClick={() =>
                                                 handleIndividualExport(
                                                     student.id,
-                                                    e.target.value
+                                                    "full"
                                                 )
                                             }
-                                            className="border border-gray-300 rounded px-2 py-1"
+                                            className="bg-yellow-400 hover:bg-green-700 text-black px-4 py-1 rounded text-sm"
                                         >
-                                            <option value="">Export</option>
-                                            <option value="full">
-                                                Data Siswa + Bimbingan
-                                            </option>
-                                        </select>
+                                            Export Laporan Konseling
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
