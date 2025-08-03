@@ -13,18 +13,16 @@ export default function Home() {
             <Navbar />
 
             {/* Hero */}
-            <section className="min-h-screen bg-techbg text-white relative bg-hero-pattern overflow-hidden px-6 flex items-center">
-                <div className="container mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between w-full">
-                    {/* Teks kiri */}
-                    <div className="w-full lg:w-1/2 text-left">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 border-r-4 border-white pr-2 animate-typingName overflow-hidden whitespace-nowrap w-fit">
-                            Sultan M Tarmizi Korompot
+            <section className="min-h-screen bg-techbg text-white relative bg-hero-pattern overflow-hidden flex items-center">
+                <div className="container mx-auto px-6 relative z-10">
+                    {/* Konten kiri */}
+                    <div className="max-w-2xl pt-24 md:pt-32 lg:pt-40 text-center lg:text-left mx-auto lg:mx-0">
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 border-r-4 border-white pr-2 whitespace-nowrap overflow-hidden w-max mx-auto lg:mx-0 animate-typingName">
+                            Sultan M. Tarmizi Korompot
                         </h1>
-
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono text-green-300 border-r-4 border-green-400 pr-2 animate-typingRole overflow-hidden whitespace-nowrap w-fit mb-6">
-                            Counseling Guidance
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono text-green-300 border-r-4 border-green-400 pr-2 whitespace-nowrap overflow-hidden w-max mx-auto lg:mx-0 animate-typingRole mb-6">
+                            Counseling & Guidance
                         </h2>
-
                         <a
                             href="#contact"
                             className="inline-block mt-2 bg-cyan-400 text-black px-6 py-2 rounded-md font-semibold shadow hover:bg-cyan-300 transition"
@@ -34,12 +32,12 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Gambar di kanan bawah */}
-                <div className="hidden lg:block absolute bottom-0 right-0 z-0">
+                {/* Gambar kanan bawah (desktop only) */}
+                <div className="hidden lg:block absolute bottom-0 right-6 z-0">
                     <img
                         src="/img/foto.png"
                         alt="Foto Profil"
-                        className="w-[420px] h-auto object-cover"
+                        className="w-[420px] max-w-none object-contain drop-shadow-xl"
                     />
                 </div>
             </section>
@@ -132,7 +130,7 @@ export default function Home() {
 
                         <div>
                             <h3 className="text-2xl font-bold text-blue-800 mb-4">
-                                Sultan Tarmidzi Korompot
+                                Sultan M. Tarmizi Korompot
                             </h3>
                             <p className="text-gray-700 text-justify mb-6 leading-relaxed">
                                 Sebagai guru Bimbingan dan Konseling di SMA
@@ -160,13 +158,14 @@ export default function Home() {
             >
                 <div className="max-w-4xl text-center">
                     <blockquote className="text-2xl md:text-3xl font-semibold text-cyan-300 italic leading-relaxed">
-                        When you look{" "}
+                        Setiap orang sukses pasti mempunyai kegagalan Jangan
+                        takut gagal karena{" "}
                         <span className="relative inline-block before:absolute before:-inset-1 before:-skew-y-3 before:bg-blue-500">
                             <span className="relative text-white px-2">
-                                annoyed
+                                kegagalan
                             </span>
                         </span>{" "}
-                        all the time, people think that you're busy.
+                        adalah bagian dari kesuksesan.
                     </blockquote>
                 </div>
             </section>
@@ -188,7 +187,7 @@ export default function Home() {
                                 <span className="w-36 font-semibold text-gray-800">
                                     Guru BK:
                                 </span>
-                                <span>Sultan Tarmidzi Korompot</span>
+                                <span>Sultan M. Tarmizi Korompot, S.Pd</span>
                             </div>
                             <div className="flex">
                                 <span className="w-36 font-semibold text-gray-800">

@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 class BimbinganController extends Controller
 {
+     public function __construct()
+    {
+        App::setLocale('id');
+        setlocale(LC_TIME, 'id_ID');
+        Carbon::setLocale('id');
+    }
+
     public function index()
     {
         return Inertia::render('Bimbingan', [

@@ -12,6 +12,7 @@
 
         .kop {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .kop-table {
@@ -53,12 +54,22 @@
             margin-top: 4px;
         }
 
+        .logo-kanan {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .logo-kanan img {
+            width: 75px;
+            height: auto;
+        }
+
         .garis {
             margin-top: 6px;
             border-bottom: 3px solid #000;
             width: 100%;
         }
-
 
         .title {
             text-align: center;
@@ -85,15 +96,35 @@
             height: 140px;
             object-fit: cover;
         }
+
+        .ttd {
+            width: 100%;
+            margin-top: 60px;
+        }
+
+        .ttd td {
+            vertical-align: top;
+        }
+
+        .ttd .kanan {
+            text-align: center;
+        }
+
+        .ttd .ttd-img {
+            width: 130px;
+            height: auto;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
 
+    {{-- KOP --}}
     <div class="kop">
         <table class="kop-table">
             <tr>
                 <td class="logo-cell">
-                    <img src="{{ public_path('img/logo-sma3gu.png') }}" alt="Logo">
+                    <img src="{{ public_path('img/logo-sma3gu.png') }}" alt="Logo SMA">
                 </td>
                 <td class="text-cell">
                     <h1>PEMERINTAH PROVINSI GORONTALO</h1>
@@ -101,13 +132,18 @@
                     <h2>SMA NEGERI 3 GORONTALO UTARA</h2>
                     <p>Jl. Bintara No.72, Desa Pinontoyonga, Kec. Atinggola, Kab. Gorontalo Utara, Gorontalo, Kode Pos 96653</p>
                 </td>
+                <td class="logo-cell">
+                    <img src="{{ public_path('img/konselor-logo.png') }}" alt="Logo Konseling">
+                </td>
             </tr>
         </table>
         <div class="garis"></div>
     </div>
 
+    {{-- JUDUL --}}
     <div class="title">Data Siswa</div>
 
+    {{-- ISI DATA --}}
     <table class="data">
         <tr>
             <td width="70%">
@@ -129,6 +165,20 @@
                 @else
                     <div class="photo" style="text-align:center; line-height:140px;">Tidak Ada Foto</div>
                 @endif
+            </td>
+        </tr>
+    </table>
+
+    {{-- TANDA TANGAN --}}
+    <table class="ttd">
+        <tr>
+            <td width="60%"></td>
+            <td class="kanan">
+                Gorontalo Utara, {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}<br>
+                <strong>Konselor</strong><br><br><br>
+                <img src="{{ public_path('img/tanda-tangan.png') }}" class="ttd-img" alt="Tanda Tangan"><br>
+                <strong>Sultan M. Tarmizi Korompot, S.Pd</strong><br>
+                NIP. 1994022420232110009
             </td>
         </tr>
     </table>

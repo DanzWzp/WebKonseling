@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        // Set lokal ke Indonesia untuk semua metode
+        App::setLocale('id');
+        setlocale(LC_TIME, 'id_ID');
+        Carbon::setLocale('id');
+    }
+
     public function index()
     {
         return Inertia::render('Student', [
@@ -81,18 +91,30 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Data siswa berhasil dihapus.');
     }
 
-    public function exportFull($id)
-    {
-        $student = Student::findOrFail($id);
-        $bimbingan = Bimbingan::where('student_id', $id)->get();
-
-        $pdf = Pdf::loadView('pdf.full_student', compact('student', 'bimbingan'));
-        return $pdf->download("laporan-konseling-{$student->name}.pdf");
-    }
-
     public function export(Student $student)
     {
+        Carbon::setLocale('id'); // pastikan juga di sini
         $pdf = Pdf::loadView('pdf.student', compact('student'));
         return $pdf->download("data-siswa-{$student->name}.pdf");
     }
+
+    public function exportFull($id) 
+    {
+        \Carbon\Carbon::setLocale('id');
+
+        $student = Student::findOrFail($id);
+        $bimbingan = \App\Models\Bimbingan::where('student_id', $id)->get();
+        $homevisit = \App\Models\HomeVisit::where('student_id', $id)->get();
+        $kenakalan = \App\Models\Kenakalan::where('student_id', $id)->get();
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.full_student', compact(
+            'student',
+            'bimbingan',
+            'homevisit',
+            'kenakalan'
+        ));
+
+        return $pdf->download("laporan-konseling-{$student->name}.pdf");
+    }
+
 }
